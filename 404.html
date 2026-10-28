@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join a trip · Japan Trip</title>
+<meta property="og:title" content="You're invited to a trip">
+<meta property="og:description" content="Tap to join in Japan Trip.">
+<style>
+  :root { --ink: #111111; --muted: #6E6E6E; --paper: #F5F5F2; --hairline: #EAEAE6; --accent: #C8102E; --bg: #FFFFFF; }
+  @media (prefers-color-scheme: dark) { :root { --ink: #F2F2EF; --muted: #9C9C97; --paper: #232322; --hairline: #2E2E2B; --accent: #E8344C; --bg: #141413; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--bg); color: var(--ink);
+         font: 16px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif; padding: 24px 16px; }
+  main { width: 100%; max-width: 380px; }
+  .label { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  h1 { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; margin: 12px 0 8px; }
+  p { color: var(--muted); margin: 0 0 20px; }
+  .code { background: var(--paper); border-radius: 22px; padding: 22px 16px; text-align: center; margin-bottom: 16px;
+          font: 700 44px/1 "SF Pro Display", -apple-system, system-ui, sans-serif; font-stretch: condensed; letter-spacing: .18em; }
+  a.button { display: block; text-align: center; background: var(--ink); color: var(--bg); text-decoration: none; font-weight: 700;
+             border-radius: 999px; padding: 15px; margin-bottom: 12px; }
+  small { display: block; color: var(--muted); text-align: center; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <div class="label"><span class="dot"></span>Japan Trip</div>
+  <h1>You're invited to a trip</h1>
+  <p id="lead">Open Japan Trip, tap <strong>Join with a code</strong>, and enter this code.</p>
+  <div class="code" id="code">······</div>
+  <a class="button" id="open" href="japantrip://">Open in Japan Trip</a>
+  <small>No app yet? Ask whoever invited you for a TestFlight invite, install Japan Trip, then tap this link again.</small>
+</main>
+<script>
+  // /join/K7Q2MX → K7Q2MX. With the app installed, iOS opens it before this page loads.
+  var match = location.pathname.match(/^\/join\/([A-Za-z0-9]{6})\/?$/);
+  if (match) {
+    var code = match[1].toUpperCase();
+    document.getElementById('code').textContent = code;
+    document.getElementById('open').href = 'japantrip://join/' + code;
+  } else {
+    document.querySelector('h1').textContent = 'Japan Trip';
+    document.getElementById('lead').textContent = 'Trip invites open here. Ask whoever invited you for the link again.';
+    document.getElementById('code').style.display = 'none';
+    document.getElementById('open').style.display = 'none';
+  }
+</script>
+</body>
+</html>

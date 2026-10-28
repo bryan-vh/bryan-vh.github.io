@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["883FW4AZPF.com.bvh.JapanTrip"],
+        "components": [
+          { "/": "/join/*", "comment": "Trip invites open the join screen with the code filled in." }
+        ]
+      }
+    ]
+  }
+}
